@@ -1,15 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <string>
-#include "getCPUTime.c"
-
-double startTime = getCPUTime();
 
 using namespace std;
 
 class circularBuffer {
 private:
-    vector<string> buff;
+    vector<int> buff;
     int count = 0;
     int buffSize;
 public:
@@ -27,14 +23,15 @@ public:
         if ((buff.size() - 1) < (count % buffSize)) {
             count -= count % buffSize;
         }
-        if (buff.size() == 0) {
+        if (buff.empty()) {
             cout << "buffer is empty" << endl;
         } else {
             buff.erase(buff.begin() + count % buffSize);
         }
+        printQ();//опционально, использовалось для проверки работспособности
     }
 
-    void enQ(string value) {
+    void enQ(int value) {
         if (count < buffSize) {
             buff.push_back(value);
             count++;
@@ -45,16 +42,21 @@ public:
             *(buff.begin() + count % buffSize) = value;
             count++;
         }
+        printQ();//опционально, использовалось для проверки работспособности
     }
 };
 
 int main() {
-    circularBuffer t(10000);
-    for (int i = 0; i < 10000; i++)
-        t.enQ("1");
-    for (int i = 0; i < 10000; i++)
-        t.deQ();
-    double endTime = getCPUTime();
-    fprintf(stderr, "CPU time used = %lf\n", (endTime - startTime));
+    circularBuffer t(6);
+    for (int i = 0; i < 8; i++)
+        t.enQ(i);
+    t.printQ();
+    t.deQ();
+    t.deQ();
+    t.deQ();
+    t.enQ(9);
+    t.deQ();
+    t.enQ(1);
+
     return 0;
 }

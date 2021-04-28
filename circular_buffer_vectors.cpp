@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <psapi.h>
-#include <windows.h>
+
 
 
 using namespace std;

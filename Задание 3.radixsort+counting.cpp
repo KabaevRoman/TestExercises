@@ -61,5 +61,6 @@ int main() {
         sourceArr[i] = rand();
     }
     radixSort(sourceArr, arrSize, notation);
+    delete[]sourceArr;
     return 0;
 }

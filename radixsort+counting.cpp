@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-#include "getCPUTime.c"
+
 
 using namespace std;
 
@@ -66,16 +66,8 @@ int main() {
         sourceArr2[i] = sourceArr[i];
     }
 
-
-    startTime = getCPUTime();
     radixSort(sourceArr, arrSize, notation);
-    endTime = getCPUTime();
-    fprintf(stderr, "CPU time used = %lf\n", (endTime - startTime));
 
-    startTime = getCPUTime();
-    qsort(sourceArr2, arrSize, sizeof(int), compare);
-    endTime = getCPUTime();
-    fprintf(stderr, "CPU time used = %lf\n", (endTime - startTime));
 
     return 0;
 }

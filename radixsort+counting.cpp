@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ctime>
 #include <string>
 
 
@@ -49,25 +48,18 @@ void radixSort(int *sourceArr, int arrSize, int notation) {
     }
 }
 
-int compare(const void *x1, const void *x2)   // функция сравнения элементов массива
-{
+int compare(const void *x1, const void *x2) {
     return (*(int *) x1 -
-            *(int *) x2);              // если результат вычитания равен 0, то числа равны, < 0: x1 < x2; > 0: x1 > x2
+            *(int *) x2);
 }
 
 int main() {
     int arrSize = 100000000;//размер массива может задать пользователь
     int notation = 10;//систему счисления может задать пользователь
-    double startTime, endTime;
     int *sourceArr = new int[arrSize];
-    int *sourceArr2 = new int[arrSize];
     for (int i = 0; i < arrSize; i++) {
         sourceArr[i] = rand();
-        sourceArr2[i] = sourceArr[i];
     }
-
     radixSort(sourceArr, arrSize, notation);
-
-
     return 0;
 }
